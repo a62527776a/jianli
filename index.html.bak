@@ -503,6 +503,7 @@ var myApp = {
 	touchEnd:function(){
 		listener.addEvt(myApp.container(),'touchend',function(e){
 			e = e || window.event;
+			e.preventDefault;
 			if (myApp.offsetY < -myApp.boundary()){
 				if (myApp.idx > 3) {
 					myApp.idx = 4;

@@ -613,6 +613,9 @@ window.onload = function(){
 	myApp.touchMove();
 	myApp.touchEnd();
 	myApp.alertTag();
+	document.ontouchmove = function(e){
+		e.preventDefault;
+	}
 }
 		</script>
 	</body>
