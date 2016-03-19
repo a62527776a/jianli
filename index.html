@@ -488,7 +488,6 @@ var myApp = {
 	touchStart:function(){
 		listener.addEvt(myApp.container(),'touchstart',function(e){
 			e = e || window.event;
-			e.preventDefault;
 			myApp.startY = e.touches[0].clientY;
 			myApp.offsetY = 0;
 		})
@@ -496,14 +495,12 @@ var myApp = {
 	touchMove:function(){
 		listener.addEvt(myApp.container(),'touchmove',function(e){
 			e = e || window.event;
-			e.preventDefault;
 			myApp.offsetY = e.touches[0].pageY - myApp.startY * 1;
 		})
 	},
 	touchEnd:function(){
 		listener.addEvt(myApp.container(),'touchend',function(e){
 			e = e || window.event;
-			e.preventDefault;
 			if (myApp.offsetY < -myApp.boundary()){
 				if (myApp.idx > 3) {
 					myApp.idx = 4;
