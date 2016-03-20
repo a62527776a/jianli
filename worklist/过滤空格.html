@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>简单计算器</title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+            text-decoration: none;
+            list-style: none;
+            color:white;
+            font-size:15px;
+        }
+        body {
+            background: #44adfb;
+        }
+        #container {
+            width:15%;
+            height:290px;
+            background-color:#666;
+            margin:15px auto;
+            border-radius: 5px;
+            padding:7px;
+        }
+        #screen {
+            width:90%;
+            height:60px;
+            margin:5px auto 15px;
+            background:#999;
+            padding:5px;
+            overflow: hidden;
+        }
+        #screen a {
+            line-height: 60px;
+            font-size:60px;
+            display: block;
+            float:right;
+            cursor: default;
+            letter-spacing:1px;
+        }
+        #num {
+            float:left;
+        }
+        #num li {
+            float:left;
+            display:block;
+            height:30px;
+            width:30px;
+            background: black;
+            border-radius: 5px;
+            margin:5px;
+            padding:5px;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+        }
+        #sign {
+            float:right;
+        }
+        #sign li {
+            display: block;
+            height:30px;
+            width:30px;
+            border-radius: 5px;
+            cursor:pointer;
+            line-height: 30px;
+            text-align: center;
+            margin:5px;
+            padding:5px;
+            background: black;
+        }
+        span {
+            display: block;
+            height:30px;
+            width:30px;
+            border-radius: 5px;
+            cursor:pointer;
+            line-height: 30px;
+            text-align: center;
+            margin:5px;
+            padding:5px;
+            float:right;
+            background: black;
+        }
+    </style>
+</head>
+<body>
+<div id = 'container'>
+    <div id = 'screen'>
+        <a id = 'S'></a>
+    </div>
+    <div id = 'num'>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <span>+</span>
+        </ul>
+        <ul>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <span>-</span>
+        </ul>
+        <ul>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <span>*</span>
+        </ul>
+        <ul>
+            <li style = 'width:130px'>0</li>
+            <span style="background: #A00">=</span>
+        </ul>
+    </div>
+</div>
+<script>
+    var screen = document.getElementById('S');
+    var num = document.getElementsByTagName('li');
+    var sign = document.getElementsByTagName('span');
+    var cound = [];//初始化计算数
+    var counded = [];//初始化被计算数
+    var buff = false;//状态;
+    var addNum = function(){
+        cound.push(this.id);
+        screen.innerHTML = cound.join('');
+    };
+    var addNum0 = function(){
+        cound.push(0);
+        screen.innerHTML = cound.join('')        
+    };
+    var add = function(){
+        buff = true;
+        if (buff){
+            var num1 = parseInt(cound.join(''));
+            screen.innerHTML = '';
+            cound = [];
+            for (var i = 1;i<num.length - 1;i++){
+                num[i].removeEventListener('click',addNum,false);
+                num[i].addEventListener('click',function(){
+                counded.push(this.id);
+                screen.innerHTML = counded.join('');
+            },false);
+            }
+            num[9].removeEventListener('click',addNum0,false);
+                num[9].addEventListener('click',function(){
+                    counded.push(0);
+                    screen.innerHTML = counded.join('');
+                },false);
+            sign[3].addEventListener('click',function(){
+                var num2 = parseInt(counded.join(''));
+                screen.innerHTML = num1 + num2;
+                counded = [];
+                buff = false;
+            },false)
+        }
+    }
+    var sub = function(){
+        buff = true;
+        if (buff){
+            var num1 = parseInt(cound.join(''));
+            screen.innerHTML = '';
+            cound = [];
+            for (var i = 1;i<num.length;i++){
+                num[i].removeEventListener('click',addNum,false);
+                num[i].addEventListener('click',function(){
+                   counded.push(this.id);
+                    screen.innerHTML = counded.join('');
+                },false);            
+            }
+            num[9].removeEventListener('click',addNum0,false);
+                num[9].addEventListener('click',function(){
+                    counded.push(0);
+                    screen.innerHTML = counded.join('');
+                },false);
+            sign[3].addEventListener('click',function(){
+                var num2 = parseInt(counded.join(''));
+                screen.innerHTML = num1 - num2;
+                counded = [];
+                buff = false;
+            },false);
+        }
+    }
+    var mul = function(){
+        buff = true;
+        if (buff){
+            var num1 = parseInt(cound.join(''));
+            screen.innerHTML = '';
+            cound = [];
+            for (var i = 1;i<num.length;i++){
+                num[i].removeEventListener('click',addNum,false);
+                num[i].addEventListener('click',function(){
+                    counded.push(this.id);
+                    screen.innerHTML = counded.join('');
+                },false);            
+            }
+            num[9].removeEventListener('click',addNum0,false);
+                num[9].addEventListener('click',function(){
+                    counded.push(0);
+                    screen.innerHTML = counded.join('');
+                },false);
+            sign[3].addEventListener('click',function(){
+                var num2 = parseInt(counded.join(''));
+                screen.innerHTML = num1 * num2;
+                counded = [];
+                buff = false;
+            },false)
+        }
+    }
+    var write = function(){
+        if (!buff){
+            for (var i = 1;i<num.length;i++){
+                num[i - 1].id = i;
+                num[i - 1].addEventListener('click',addNum,false);
+            }
+        };
+        num[9].addEventListener('click',addNum0,false);
+        sign[0].addEventListener('click',add,false);
+        sign[1].addEventListener('click',sub,false);
+        sign[2].addEventListener('click',mul,false);
+    }
+    window.onload = function(){
+        write();
+    }
+
+</script>
+</body>
+</html>
