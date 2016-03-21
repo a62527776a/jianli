@@ -1,0 +1,118 @@
+
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>放大镜特效</title><meta name = 'viewpoint' content = 'width = device-width, initial-scale = 1.0 ,maximum-scale = 1.0,minimum-scale = 1.0,user-scalable = no' />
+
+<style>
+	* {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+body {
+  background-image: linear-gradient(to bottom, #44adfb, #1e96e8); }
+
+#content {
+  width: 200px;
+  height: 200px;
+  border: 1px solid white;
+  overflow: hidden;
+  margin: 150px auto 0;
+  position: relative; }
+  #content img {
+    height: 100%;
+    width: 100%;
+    position: absolute; }
+
+#floatWindow {
+  height: 50px;
+  width: 50px;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  cursor: pointer;
+  display: none; }
+
+#bigWindow {
+  display: none;
+  height: 300px;
+  width: 300px;
+  overflow: hidden;
+  border: 1px solid white;
+  position: relative;
+  margin: -1px auto; }
+  #bigWindow img {
+    position: absolute; }
+
+/*# sourceMappingURL=fangda.css.map */
+
+</style>
+
+<body id="body"></body></head><div id="content" style="width:200px;height:200px"><img src="./images/马里奥.jpg"><div id="floatWindow" style="height:50px;width:50px"></div></div><div id="bigWindow" style="width:300px;height:300px"><img src="./images/马里奥.jpg" style="width:900px;height:900px"></div></html>
+
+<script>
+	var gId = function(obj){
+	return document.getElementById(obj)
+}
+var gClass = function(obj){
+	return document.getElementsByClassName(obj);
+}
+var gTag = function(parent,obj){
+	return document.getElementById(parent).getElementsByTagName(obj);
+}
+
+var addEvt = function(obj,evt,func){
+	obj.addEventListener(evt,func);
+}
+
+var oHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+
+
+//公共变量
+var body = gId('body');
+var container = gId('content');
+var smallBox = gId('floatWindow');
+var bigBox = gId('bigWindow');
+var oLeft = container.offsetLeft;
+var oTop = container.offsetTop;
+var smallWidth = smallBox.style.width;
+var smallHeight = smallBox.style.height;
+var bigImg = gTag('bigWindow','img')[0];
+var fangda = function(){
+	addEvt(container,'mouseover',function(e){
+		smallBox.style.display = 'block';
+		bigBox.style.display = 'block';
+	})
+	addEvt(container,'mouseout',function(){
+		smallBox.style.display = 'none';
+		bigBox.style.display = 'none';		
+	})
+	addEvt(container,'mousemove',function(e){
+		var left = e.clientX - oLeft - parseInt(smallWidth)/2;
+		var top = e.clientY - oTop - parseInt(smallHeight)/2;
+		if (left < 0){
+			left = 0;
+		} else if (left > parseInt(container.style.width) - parseInt(smallWidth)){
+			left = parseInt(container.style.width) - parseInt(smallWidth);
+		}
+		if (top < 0){
+			top = 0;
+		} else if (top > parseInt(container.style.height) - parseInt(smallHeight)){
+			top = parseInt(container.style.height) - parseInt(smallHeight);
+		}
+		smallBox.style.left = left + 'px';
+		smallBox.style.top = top + 'px';
+		var bigLeft = (left / (parseInt(container.style.width) - parseInt(smallWidth)));
+		var bigTop = (top / (parseInt(container.style.height) - parseInt(smallHeight)));
+		bigImg.style.left = -bigLeft * (parseInt(bigImg.style.width) - parseInt(bigBox.style.width)) + 'px';
+		bigImg.style.top = -bigTop * (parseInt(bigImg.style.height) - parseInt(bigBox.style.height)) + 'px';
+	})
+
+}
+
+
+
+window.onload = function(){
+	body.style.height = oHeight - 150 + 'px';	
+	fangda();
+}
+	
+</script>

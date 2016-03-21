@@ -1,0 +1,175 @@
+
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>焦点轮播图</title><meta name = 'viewpoint' content = 'width = device-width, initial-scale = 1.0 ,maximum-scale = 1.0,minimum-scale = 1.0,user-scalable = no' />
+
+<style>
+
+* {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+body {
+  background-image: linear-gradient(to bottom, #44adfb, #1e96e8); }
+
+#content {
+  width: 800px;
+  height: 200px;
+  border: 1px solid white;
+  overflow: hidden;
+  margin: 150px auto;
+  position: relative; }
+
+#btn {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  margin-left: -70px; }
+  #btn span {
+    height: 15px;
+    width: 15px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 0 10px;
+    float: left; }
+
+#left {
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  margin-top: -12.5px;
+  background-color: white; }
+
+#right {
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  margin-top: -12.5px;
+  background-color: white; }
+
+#list {
+  position: absolute;
+  height: 100%;
+  width: 4800px; }
+  #list li {
+    float: left;
+    height: 100%;
+    width: 800px; }
+
+.on {
+  height: 24px;
+  width: 24px;
+  border: 1px solid #44adfb; }
+
+/*# sourceMappingURL=container.css.map */
+	
+
+</style>
+
+
+<body id="body"></body></head><div id="content"><ul id="list" style="left:-800px"><li style="background-color:red"></li><li style="background-color:blue"></li><li style="background-color:yellow"></li><li style="background-color:black"></li><li style="background-color:red"></li><li style="background-color:blue"></li></ul><div id="btn"><span index="1" class="on"></span><span index="2"></span><span index="3"></span><span index="4"></span></div><div id="left"></div><div id="right"></div></div></html>
+
+<script>
+	var gId = function(obj){
+	return document.getElementById(obj)
+}
+var gClass = function(obj){
+	return document.getElementsByClassName(obj);
+}
+var gTag = function(parent,obj){
+	return document.getElementById(parent).getElementsByTagName(obj);
+}
+
+var addEvt = function(obj,evt,func){
+	obj.addEventListener(evt,func);
+}
+var oHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+
+//公共变量
+var body = gId('body');
+var btns = gTag('content','span');
+var container = gId('content');
+var list = gId('list');
+var li = gTag('list','li');
+var back = gId('left');
+var next = gId('right');
+var index = 1;
+var animated = false;
+var timer;
+
+var btnChange = function(){
+	body.style.height = oHeight - 150 + 'px';
+	var showButton = function(){
+		var len = btns.length
+		for (var i = 0;i<len;i++){
+			if(btns[i].className = 'on'){
+				btns[i].className = '';
+			}
+		}
+		btns[index - 1].className = 'on';
+	}
+	var animate = function(offset){
+		var time = 300;
+		var interval = 10;
+		var speed = offset / (time/interval);
+		var newLeft = parseInt(list.style.left) + offset;
+		var go = function(){
+			if ((speed < 0 && parseInt(list.style.left)>newLeft)||(speed > 0 && parseInt(list.style.left)<newLeft)) {
+				list.style.left = parseInt(list.style.left) + speed + 'px';
+				setTimeout(go,interval);
+				} else {
+				list.style.left = newLeft + 'px';
+				if (newLeft < -3200){
+					list.style.left = -800 + 'px';
+				}
+				if (newLeft > -800){
+					list.style.left = -3200 + 'px';
+				}
+			}
+		}
+		go();
+	}
+	addEvt(next,'click',function(){
+		animate(-800);
+		if (index === 4){
+			index = 1;
+			showButton();
+			return;
+		}
+		index += 1;
+		showButton();
+	})
+	addEvt(back,'click',function(){
+		animate(800);
+		if (index === 1){
+			index = 4;
+			showButton();
+			return;
+	 	}
+		index -= 1;
+		showButton();
+	})
+	var btnchange = function(){
+		var len = btns.length;
+		for (var i = 0;i<len;i++){
+			addEvt(btns[i],'click',function(){
+				var myIdx = this.getAttribute('index');
+				var offset = -800 * (myIdx - index);
+				index = myIdx;
+				animate(offset);
+				showButton();
+			})
+		}
+	}
+	btnchange();
+}
+
+window.onload = function(){
+	btnChange();
+}
+
+</script>

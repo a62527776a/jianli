@@ -1,0 +1,88 @@
+
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>tabÑ¡Ïî¿¨</title><meta name = 'viewpoint' content = 'width = device-width, initial-scale = 1.0 ,maximum-scale = 1.0,minimum-scale = 1.0,user-scalable = no' />
+
+<style>
+* {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+body {
+  background-color:#44adfb}
+
+#content {
+  width: 200px;
+  height: 200px;
+  border: 1px solid white;
+  overflow: hidden;
+  margin: 150px auto 0;
+  position: relative; }
+
+#tit {
+  width: 200px;
+  height: 30px; }
+  #tit li {
+    width: 50px;
+    height: 30px;
+    float: left; }
+
+#box {
+  height: 170px;
+  width: 200px; }
+  #box li {
+    display: none;
+    height: 100%;
+    width: 100%; }
+
+/*# sourceMappingURL=tab.css.map */
+</style>
+
+<body id="body"></body></head><div id="content"><div id="tit"><ul><li style="background:blue"></li><li style="background:yellow"></li><li style="background:red"></li><li style="background:green"></li></ul></div><div id="box"><li style="background:blue;display:block"></li><li style="background:yellow"></li><li style="background:red"></li><li style="background:green">			</li></div></div></html>
+
+<script>
+	var gId = function(obj){
+	return document.getElementById(obj)
+}
+var gClass = function(obj){
+	return document.getElementsByClassName(obj);
+}
+var gTag = function(parent,obj){
+	return document.getElementById(parent).getElementsByTagName(obj);
+}
+
+var addEvt = function(obj,evt,func){
+	obj.addEventListener(evt,func);
+}
+
+
+//公共变量
+var body = gId('body');
+var container = gId('content');
+var btns = gTag('tit','li');
+var box = gTag('box','li');
+var timer;
+var len = btns.length;
+var tab = function(){
+	for (var i = 0;i<len;i++){
+		btns[i].id = i;
+		addEvt(btns[i],'mouseover',function(){
+			clearTimeout(timer);
+			var that = this;
+			timer = setTimeout(function(){
+				for (var j = 0;j<len;j++){
+					box[j].style.display = 'none';
+				}
+				box[that.id].style.display = 'block';
+			},300)
+		})
+	}
+}
+
+
+
+window.onload = function(){
+	tab();
+}
+
+</script>

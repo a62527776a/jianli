@@ -1,0 +1,106 @@
+
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>遮罩层</title><meta name = 'viewpoint' content = 'width = device-width, initial-scale = 1.0 ,maximum-scale = 1.0,minimum-scale = 1.0,user-scalable = no' />
+
+<style>
+	* {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+body {
+  background-image: linear-gradient(to bottom, #44adfb, #1e96e8); }
+
+#content {
+  width: 80px;
+  height: 30px;
+  border: 1px solid white;
+  overflow: hidden;
+  margin: 150px auto 0;
+  position: relative;
+  cursor: pointer;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 30px;
+  background-color: #44adfb;
+  transition: background 0.5s;
+  transition: color 0.5s;
+  -webkit-transition: background 0.5s;
+  -o-transition: color 0.5s; }
+
+#content:hover {
+  background-color: white;
+  color: #44adfb; }
+
+#oMask {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+#oLogin {
+  background-color: white;
+  position: absolute; }
+
+/*# sourceMappingURL=mask.css.map */
+
+</style>
+
+<body id="body"></body></head><div id="content">点击</div></html>
+
+
+<script>
+	var gId = function(obj){
+	return document.getElementById(obj)
+}
+var gClass = function(obj){
+	return document.getElementsByClassName(obj);
+}
+var gTag = function(parent,obj){
+	return document.getElementById(parent).getElementsByTagName(obj);
+}
+
+var addEvt = function(obj,evt,func){
+	obj.addEventListener(evt,func);
+}
+
+
+//公共变量
+var body = gId('body');
+var container = gId('content');
+var bgHeight = document.body.scrollHeight || document.documentElement.scrollHeight;
+
+var mask = function(){
+	addEvt(container,'click',function(){
+		var oMask = document.createElement('div');
+		var oLogin = document.createElement('div');
+		var speed;
+		oLogin.style.height = 200 + 'px';
+		oLogin.style.width = 500 + 'px';
+		var sHeight = document.documentElement.scrollHeight;
+		var oHeight = oLogin.style.height;
+		var oWidth = oLogin.style.width;
+		var sWidth = document.documentElement.scrollWidth;
+		oMask.id = 'oMask';
+		oLogin.id = 'oLogin';
+		oLogin.style.top = (sHeight - parseInt(oHeight))/2 - 100 + 'px';
+		oLogin.style.left = (sWidth - parseInt(oWidth))/2 + 'px';
+		document.documentElement.appendChild(oMask);
+		document.documentElement.appendChild(oLogin);
+		addEvt(oMask,'click',function(){
+			document.documentElement.removeChild(oMask);
+			document.documentElement.removeChild(oLogin);	
+		})
+	})
+}
+
+
+window.onload = function(){
+	body.style.height =  bgHeight - 150 + 'px';	
+	mask();
+}
+
+</script>
