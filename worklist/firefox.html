@@ -2,7 +2,392 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="css.css">
+		<style>
+* {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	font-family: Microsoft YaHei,Simsum,serif;
+	color:#3c3c3c;
+	font-size:small;
+}
+/* 头部 */
+form {
+	display: block;
+	height:60px;
+	margin:auto;
+	overflow:hidden;
+	padding:50px 0 20px;
+	width:605px;
+}
+fieldset {
+	padding:3px;
+	border:0 none;
+	margin:0;
+}
+.logo {
+	display:inline-block;
+	height:32px;
+	text-align: center;
+	vertical-align:bottom;
+	width:100px;
+}
+.search {
+	border:1px solid #d8d8d8;
+	height:32px;
+	width:400px;
+	padding:0 5px;
+}
+.search:focus {
+	border:1px solid #009ae2;
+}
+.search:focus + .submit {
+	background-image: linear-gradient(to bottom, #44adfb, #1e96e8);
+	border:1px solid #009ae2;
+	color:white;
+}
+.submit {
+	background-image:linear-gradient(to bottom, #fbfbfb, #f3f3f3);
+	border:1px solid #d8d8d8;
+	cursor: pointer;
+	height:32px;
+	width:86px;
+	padding: 0 5px;
+	position:relative;
+	left:-5px;
+}
+fieldset:last-of-type {
+	margin-left:100px;
+}
+fieldset:last-of-type input {
+	margin:3px;
+}
+fieldset:last-of-type a {
+	letter-spacing: 4px;
+}
+/* 底部 */
+footer {
+	height:37px;
+	position:fixed;
+	bottom: 0;
+	border-top:1px solid #d8d8d8;
+	text-align:center;
+	width:100%;
+	z-index:1000000;
+	background:rgba(242,242,242,0.98);
+	padding-top:13px;
+}
+#button {
+	width:216px;
+	display: block;
+	margin:auto;
+}
+#button li {
+	border-top:5px solid #d6d6d6;
+	cursor:pointer;
+	display:inline-block;
+	width:104px;
+	padding-top:1px;
+}
+#logo {
+	display:block;
+	float:left;
+	margin: -5px 0 0 40px;
+}
+#toggle {
+	cursor: pointer;
+	height:14px;
+	padding-right:6px;
+	width:8px;
+	float:right;
+	background:url('./img/toggle.gif') no-repeat scroll 0 0;
+	background-size: 100% 100%;
+	position: absolute;
+	bottom:20px;
+	right:50px;
+	z-index:1000001;
+}
+.toggle {
+	transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+}
+#launcher {
+	float:right;
+	margin-top:-26px;
+	margin-right:84px;
+}
+#launcher li {
+	border:1px solid rgb(242,242,242);
+	cursor:pointer;
+	display: inline-block;
+	line-height: 25px;
+	position: relative;
+	padding: 0 6px;
+	float:left;
+	margin: 0 2px;
+}
+#launcher li:hover {
+	background: #dedede;
+	border:1px solid #c9ced2;
+	border-radius:3px;
+}
+.launcherOn {
+	background: #dedede;
+	border:1px solid #c9ced2;
+	border-radius:3px;
+}
+#relatedTabs,#tools,#pageSet {
+	border: 1px solid #d8d8d8;
+	box-shadow:0 0 6px #000;
+	position:absolute;
+	bottom:30px;
+	right:0;
+	padding: 12px 5px;
+	text-align:left;
+	background: white;
+}
+/* 主体 */
+#box {
+	overflow: hidden;
+	position: relative;
+	width:100%;
+	height: 80%;	
+	transition:left 400ms linear;
+	-webkit-transition:left 400ms linear;
+	-o-transition:left 400ms linear;
+}
+#right {
+	position:absolute;
+	width:100%;
+	height:100%;
+	transition:left 400ms linear;
+	-webkit-transition:left 400ms linear;
+	-o-transition:left 400ms linear;
+}
+#left {
+	position: absolute;
+	width: 100%;
+	left:-100%;
+	height:100%;
+	transition: left 400ms linear;
+}
+#main {
+	width:744px;
+	margin: 40px auto;
+	background: white;
+}
+.mainTit {
+	width:100%;
+	height:33px;
+	border-bottom: 1px dashed #a6a6a6;
+}
+.mainTit span {
+	display:block;
+	line-height: 33px;
+	float:left;
+	width:90px;
+	text-align: left;
+	font-size: 14px;
+	color:#777;
+	text-indent: 12px;
+}
+.mainTit li {
+	float:left;
+	line-height: 33px;
+	padding:0 16px;
+	cursor:pointer;
+	color:#777;
+	position: relative;
+	text-align: center;
+}
+.mainTit b {
+	font-size:18px;
+	color:#777;
+	font-weight:bold;
+}
+.titOn {
+	border-bottom:2px solid #029ae5;
+	color:#029ae5;
+}
+.mainBox {
+	padding:20px 12px 20px 10px;
+	position: absolute;
+	background: white;
+	width:721px;
+}
+.mainBox img {
+	width:100%;
+	height:auto;
+	top:-2px;
+	position:absolute;
+}
+.imgBig p {
+	background:rgba(0,0,0,0.5);
+	position:absolute;
+	bottom: 0;
+	height:24px;
+	font-size:12px;
+	line-height: 24px;
+	width:100%;
+	color:white;
+	text-indent:12px;
+}
+ .imgSmall p {
+	background:rgba(0,0,0,0.5);
+	position:absolute;
+	bottom: 0;
+	height:24px;
+	font-size:12px;
+	line-height: 24px;
+	width:100%;
+ 	color:white;
+ 	text-indent:12px;
+ }
+.imgBig {
+	height:180px;
+	width:224px;
+	position: relative;
+	overflow:hidden;
+	border-left:1px solid #000;
+	border-top:1px solid #000;
+	border-right:1px solid #a6a6a6;
+}
+.mainBox p:hover {
+	 text-decoration: underline;
+	 color:#ff9500;
+	 cursor:default;
+}
+.imgSmall {
+	position:absolute;
+	left:235px;
+	top:20px;
+	margin-left:12px;
+}
+#firstImg {
+	margin-bottom: 12px;
+}
+.imgMod {
+	height:84px;
+	width:146px;
+	position:relative;
+	overflow:hidden;
+	border-left:1px solid #000;
+	border-top:1px solid #000;
+	border-right:1px solid #a6a6a6;
+}
+.list {
+	width:320px;
+	margin-left:12px;
+	position:absolute;
+	left:400px;
+	top:20px;
+}
+.list li {
+	margin:8px;
+	letter-spacing: 2px
+}
+.list a {
+	color:#777;
+	cursor:pointer;
+}
+.list a:hover {
+	text-decoration: underline;
+	color:#ff9500;
+}
+.newsFirst {
+	font-weight:bold;
+}
+#left ol{
+	max-width:870px;
+	margin:10px auto 50px;
+}
+#left li{
+	border:1px dashed #d8d8d8;
+	box-sizing: border-box;
+	float:left;
+	height:166px;
+	margin:10px;
+	opacity: 1;
+	width:calc((100% - 60px) / 3);
+	background-image:url('./img/gezi.png');
+	cursor:pointer;
+}
+#left li:hover {
+	box-shadow: 0 0 6px 0 rgba(0,0,0,0.85);
+}
+/* launcher */
+#pageSet fieldset {
+	line-height: 28px;
+	margin:7px 14px;
+	border-top:1px solid #d8d8d8;
+	width:250px;
+}
+#bgcolor span {
+	height:22px;
+	width:22px;
+	border:1px solid #d8d8d8;
+	display:block;
+	cursor:pointer;
+	float:left;
+	margin-right:15px;
+}
+#bgcolor > span:nth-of-type(1) {
+	background:white;
+}
+#bgcolor > span:nth-of-type(2) {
+	background:#fff8ed;
+}
+#bgcolor > span:nth-of-type(3) {
+	background:#fdfece;
+}
+#bgcolor > span:nth-of-type(4) {
+	background:#edfffb;
+}
+#bgcolor > span:nth-of-type(5) {
+	background:#edf7ff;
+}
+#bgcolor > span:nth-of-type(6) {
+	background:#f4edff;
+}
+/* 左右箭头 */
+#leftIcon,#rightIcon {
+	height:36px;
+	width:36px;
+	background-clip:content-box;
+	background-size: 100% 100%;
+	position:absolute;
+	top:43%;
+	background-image: url('./img/icon.png');
+}
+#leftIcon {
+	left:4%;
+}
+#rightIcon {
+	right:4%;
+	display:none;
+	-webkit-transform:rotate(180deg);
+	transform:rotate(180deg);
+	-o-transform:rotate(180deg);
+}
+#omask {
+	background-color:rgba(0,0,0,0.5);
+	position: fixed;
+	z-index:999998;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+}
+#oWindow {
+	background: white;
+	position:fixed;
+	height:60%;
+	width:60%;
+	z-index:999999;
+}
+		</style>
 	</head>
 	<body>
 		<form>
@@ -278,5 +663,250 @@
 			</ul>
 		</footer>
 	</body>
-	<script type="text/javascript" src="script.js"></script>
+	<script>
+//获取Id、className、tagName
+var gId = function (obj){
+	return document.getElementById(obj);
+}
+var gClass = function(obj,array){
+	return document.getElementsByClassName(obj)[array];
+}
+var gTag = function(parent,obj,array){
+	return document.getElementById(parent).getElementsByTagName(obj)[array];
+}
+var gArray = function(parent,obj){
+	return document.getElementById(parent).getElementsByTagName(obj);
+}
+//工具栏，访问记录，页面设置
+var visibility = function(button,box){
+	document.addEventListener('click',function(e){
+		e = e || event;
+		var target = e.srcElement || e.target;
+		if (target === button && box.style.display === 'none'){
+			box.style.display = 'block';
+			button.className = 'launcherOn';
+			button.style.border = '1px solid #c9ced2';
+		} else if ((target === button && box.style.display === 'block') || (target !== button && target !== box)) {
+			box.style.display = 'none';
+			button.className = '';
+			button.style.border = '';
+		}
+	})
+}
+//footer栏目开关
+var footerButton = function(){
+	var toggle = gId('toggle');
+	var footer = gId('footer');
+	toggle.addEventListener('click',function(){
+		if (footer.style.display === 'block'){
+			footer.style.display = 'none';
+			toggle.className = 'toggle';
+		} else {
+			footer.style.display = 'block';
+			toggle.className = '';
+		}
+	})
+}
+//搜索引擎切换
+var searchTab = function(){
+	var logo = gTag('logoList','img',0);
+	var logoBtn = gArray('logoBtn','input');
+	var link = gId('logoList');
+	var len = logoBtn.lenth;
+	var value = {
+		alt:{
+			baidu:'baidu',
+			google:'google',
+			taobao:'taobao'
+		},
+		src:{
+			baidu:'./img/baidulogo.png',
+			google:'./img/googlelogo.png',
+			taobao:'./img/taobaologo.png'
+		},
+		href:{
+			baidu:'https://www.baidu.com/index.php?tn=monline_3_dg',
+			google:'https://www.google.com/',
+			taobao:'http://ai.taobao.com/?pid=mm_28347190_2425761_13466329'
+		}
+	};
+	logoBtn[0].addEventListener('click',function(){
+		logo.alt = value.alt.baidu;
+		logo.src = value.src.baidu;
+		link.href = value.href.baidu;
+	})
+	logoBtn[1].addEventListener('click',function(){
+		logo.alt = value.alt.google;
+		logo.src = value.src.google;
+		link.href = value.href.google;
+	})
+	logoBtn[2].addEventListener('click',function(){
+		logo.alt = value.alt.taobao;
+		logo.src = value.src.taobao;
+		link.href = value.href.taobao;
+	})
+	if (logoBtn[0].checked){
+		logo.alt = value.alt.baidu;
+		logo.src = value.src.baidu;
+		link.href = value.href.baidu;		
+	}
+	if (logoBtn[1].checked){
+		logo.alt = value.alt.google;
+		logo.src = value.src.google;
+		link.href = value.href.google;		
+	}
+	if (logoBtn[2].checked){
+		logo.alt = value.alt.taobao;
+		logo.src = value.src.taobao;
+		link.href = value.href.taobao;		
+	}
+}
+//change bgcolor
+var changeBg = function(){
+	var colors = ['white','#fff8ed','#fdfece','#edfffb','#edf7ff','#f4edff']
+	var len = colors.length;
+	var body = document.body;
+	var color = gArray('bgcolor','span');
+	for (var i = 0;i<len;i++){
+		color[i].id = i;
+		color[i].addEventListener('click',function(){
+			body.style.background = colors[this.id];
+		})
+	}
+};
+//主内容切换
+var mainTab = function(){
+	var btn = gArray('button','li');
+	var left = gId('left');
+	var right = gId('right');
+	var leftIcon = gId('leftIcon');
+	var rightIcon = gId('rightIcon');
+	leftIcon.addEventListener('click',function(){
+		rightIcon.style.display = 'block';
+		leftIcon.style.display = 'none';
+		btn[0].click();
+	})
+	rightIcon.addEventListener('click',function(){
+		rightIcon.style.display = 'none';
+		leftIcon.style.display = 'block';
+		btn[1].click();
+	})
+	btn[1].style.borderTopColor = '#b5d9f5';
+	btn[1].addEventListener('click',function(){
+		btn[0].style.borderTopColor = ''
+		this.style.borderTopColor = '#b5d9f5';
+		left.style.left = '100%';
+		right.style.left = '0';
+	})
+	btn[0].addEventListener('click',function(){
+		btn[1].style.borderTopColor = '';
+		left.style.left = '0';
+		right.style.left = '100%';
+		this.style.borderTopColor = '#b5d9f5';
+	})
+}
+//新闻页面切换
+var newsTab = function(){
+	var newsTit = gArray('titList','li');
+	var newsBox = document.getElementsByClassName('mainBox');
+	var timer;
+	var len = newsTit.length;
+		for (var i = 0;i<len;i++){
+			newsTit[i].id = i;
+			newsTit[i].addEventListener('mouseover',function(){
+				clearTimeout(timer);
+				var that = this;
+				timer = setTimeout(function(){
+					for (var j = 0;j<len;j++){
+						newsTit[j].className = '';
+						newsBox[j].style.display = 'none';
+					}
+					that.className = 'titOn';
+					newsBox[that.id].style.display = 'block';
+				},300)
+			})
+		}
+	newsTit[0].className = 'titOn';
+}
+//行列选择
+var colRow = function(){
+	var colRowBox = gTag('left','ol',0);
+	var col = gArray('colNum','option');
+	var row = gArray('rowNum','option');
+	var cell = gArray('left','li');
+	var colLen = col.length;
+	var rowLen = row.length;
+	var colValue = gId('colNum').value;
+	var rowValue = gId('rowNum').value;
+	for (var i = 0;i<colLen;i++){
+		col[i].addEventListener('click',function(){
+			if (cell.length < (colValue * rowValue))
+			{
+				var li = document.createElement('li');
+				colRowBox.appendChild(li);
+				li.title = '点击添加新的标题';
+
+			} else {
+				colRowBox.removeChild(cell[cell.length - 1]);
+			}
+		})
+	}
+	for (var i = 0;i<rowLen;i++){
+		row[i].addEventListener('click',function(){
+			if (cell.length < (colValue * rowValue))
+			{
+				var li = document.createElement('li');
+				colRowBox.appendChild(li);
+				li.title = '点击添加新的标题';
+
+			} else {
+				colRowBox.removeChild(cell[cell.length - 1]);
+			}
+		})
+	}
+}
+//mask
+var mask = function(){
+	var cell = gArray('left','li');
+	var len = cell.length;
+	var oMask = document.createElement('div');
+	var oWindow = document.createElement('div')
+	var oHeight = document.documentElement.offsetHeight;
+	var oWidth = document.documentElement.offsetWidth;
+	for (var i = 0;i<len;i++){
+		cell[i].addEventListener('click',function(){
+			document.body.appendChild(oMask);
+			document.body.appendChild(oWindow)
+			oMask.id = 'oMask';
+			oWindow.id = 'oWindow';
+			var wHeight = gId('oWindow').offsetHeight;
+			var wWidth = gId('oWindow').offsetWidth;
+			gId('oWindow').style.top = (oHeight - wHeight)/2;
+			gId('oWindow').style.left = (oWidth - wWidth)/2;
+		})
+	}
+	oMask.addEventListener('click',function(){
+		document.body.removeChild(oMask);
+		document.body.removeChild(oWindow);
+	})
+}
+window.onload = function(){	
+	var related = gClass('related',0);
+	var tools = gClass('tools',0);
+	var pageSet = gClass('page',0);
+	var relBox = gId('relatedTabs');
+	var toolsBox = gId('tools');
+	var pageBox = gId('pageSet');
+	visibility(related,relBox);
+	visibility(tools,toolsBox);
+	visibility(pageSet,pageBox);
+	footerButton();
+	searchTab();
+	changeBg();
+	mainTab();
+	newsTab();
+	colRow();
+	mask();
+}
+	</script>
 </html>
