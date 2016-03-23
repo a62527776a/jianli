@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>一个时钟</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background:#44adfb;
+}
+#container {
+    height:300px;
+    display: block;
+    border-radius: 50%;
+    margin:30px auto;
+    background:white;
+    width:300px;
+    position:relative;
+}    
+.second {
+    display: block;
+    position: absolute;
+    margin:20px;
+    height:260px;
+    width:260px;
+    border-radius: 50%;
+}
+.minute {
+    display: block;
+    position: absolute;
+    margin:20px;
+    height:260px;
+    width:260px;
+    border-radius: 50%;
+}
+.hour {
+    display: block;
+    position: absolute;
+    margin:20px;
+    height:260px;
+    width:260px;
+    border-radius: 50%;
+}
+p{
+    height:30px;
+    width:90px;
+    background: #44adfb;
+    display: block;
+    margin: 0 auto;
+    position:relative;
+    top:200px;
+    z-index:50;
+    color:white;
+    line-height: 30px;
+    padding:2px;
+    letter-spacing: 4px;
+}
+canvas {
+    z-index:999;
+}
+</style>
+</head>
+
+<body>
+<div id = 'container'>
+    <canvas class = 'second'></canvas>
+    <canvas class = 'minute'></canvas>
+    <canvas class = 'hour'></canvas>
+    <p></p>
+</div>
+<script>
+    var p = document.getElementsByTagName('p')[0];
+    var secondCanvas = document.getElementsByClassName('second')[0];
+    var minuteCanvas = document.getElementsByClassName('minute')[0];
+    var hourCanvas = document.getElementsByClassName('hour')[0];
+    var second = secondCanvas.getContext('2d');
+    var minute = minuteCanvas.getContext('2d');
+    var hour = hourCanvas.getContext('2d');
+    var render = function(obj,y,longer){
+        obj.beginPath();
+        obj.translate(150,y);
+        obj.moveTo(0,0);
+        obj.lineTo(0,longer);
+        obj.stroke();
+    }
+    var setCanvas = function(){
+        var DateNow = new Date();
+        var ms = parseInt(DateNow.getTime());
+        var s = parseInt(DateNow.getSeconds());
+        var m = parseInt(DateNow.getMinutes());
+        var h = parseInt(DateNow.getHours());
+        secondCanvas.style.webkitTransform = 'rotate( '+ ms*0.006 +'deg)';
+        minuteCanvas.style.webkitTransform = 'rotate( '+ m*6 +'deg)';
+        hourCanvas.style.webkitTransform = 'rotate( '+ h*30 +'deg)';        
+        m = check(m);
+        s = check(s);
+        p.innerHTML = h + ':' + m + ':' + s;
+        function check(i){
+            if (i < 10){
+                i = '0' + i;
+            }
+            return i;
+        } 
+        setTimeout('setCanvas()',100);
+    }
+    window.onload = function(){
+        render(second,75,-100);
+        render(minute,75,-65);
+        render(hour,75,-30);
+        setCanvas();
+    }
+</script>
+</body>
+</html>
