@@ -204,7 +204,7 @@ h1 a {
 .sync {
 	text-align: center;
 	line-height:2em;
-	margin-top:50px;
+	margin-top:10px;
 }
 /* 简介内容 */
 .skill {
@@ -247,6 +247,7 @@ h1 a {
 	padding:5px 15px;
 	color:#44adfb;
 	cursor:pointer;
+	max-width:200px;
 	background: white;
 }
 /* 教育经历内容 */
@@ -301,6 +302,14 @@ h1 a {
 	cursor: pointer;
 	text-decoration: underline;
 }
+#mobile {
+	display:none;
+}
+@media screen and (max-width:600px){
+	#mobile {
+		display:block;
+	}
+}
 		</style>
 	</head>
 	<body>
@@ -311,17 +320,18 @@ h1 a {
 				<li class = 'page' id = 'pageTwo'>
 					<div id  = 'skill' class = 'skill'>
 						<span><a>HTML
-							<p>熟练运用HTML标签，了解HTML5标准。</p>
+							<p>熟练运用HTML标签，对响应式设计，移动端开发有一定了解。</p>
 						</a></span>
 						<span><a>CSS
 							<p>理解各类常用CSS样式标签，对CSS3新特性有一定理解，能够使用SASS对CSS文件进行模块化处理。</p>
 						</a>
 						</span>
 						<span><a>JavaScript
-							<p>JavaScript基础扎实，熟练手写各类常用中低难度组件、API。</p>
+							<p>JavaScript基础扎实，熟练手写各类常用中低难度组件，能够使用原生JS写低难度程序。</p>
 						</a>
 						</span>
 					</div>
+					<p class = 'sync' id = 'mobile'>本人熟练运用HTML标签，对响应式设计，移动端开发有一定了解。<br/>理解各类常用CSS样式标签，对CSS3新特性有一定理解，能够使用SASS对CSS文件进行模块化处理。<br/>JavaScript基础扎实，熟练手写各类常用中低难度组件,能够使用原生JS写低难度程序。</p>
 					<p class = 'sync'>本人热爱技术，喜于构建，对前沿技术抱有热情。<br/>自学至今，只求突破自我，以窥视更大的世界。</p>
 				</li>
 				<li class = 'page' id = 'pageThree'>
@@ -329,14 +339,14 @@ h1 a {
 				</li>
 				<li class = 'page' id = 'pageFour'>
 					<ul>
+						<a href = 'http://htmlpreview.github.com/?https://github.com/a62527776a/jianli/blob/master/worklist/简单的计算器.html' target="_blank"><li>简单的计算器<span></span></li></a>
+						<a href = 'http://htmlpreview.github.com/?https://github.com/a62527776a/jianli/blob/master/worklist/钟表.html' target="_blank"><li>时钟<span></span></li></a>
+						<a href = 'http://htmlpreview.github.com/?https://github.com/a62527776a/jianli/blob/master/worklist/接球小游戏.html' target="_blank"><li>接球小游戏<span></span></li></a>
 						<a href = 'http://htmlpreview.github.com/?https://github.com/a62527776a/jianli/blob/master/worklist/firefox.html' target="_blank"><li>demo页<span></span></li></a>
 						<a href = 'http://htmlpreview.github.com/?https://github.com/a62527776a/jianli/blob/master/worklist/container.html' target="_blank"><li>焦点轮播图<span></span></li></a>
 						<a href = 'http://htmlpreview.github.com/?https://github.com/a62527776a/jianli/blob/master/worklist/tab.html' target="_blank"><li>tab选项卡<span></span></li></a>
 						<a href = 'http://htmlpreview.github.com/?https://github.com/a62527776a/jianli/blob/master/worklist/fangda.html' target="_blank"><li>放大镜<span></span></li></a>
 						<a href = 'http://htmlpreview.github.com/?https://github.com/a62527776a/jianli/blob/master/worklist/mask.html' target="_blank"><li>遮罩层<span></span></li></a>
-						<a href = 'http://htmlpreview.github.com/?https://github.com/a62527776a/jianli/blob/master/worklist/简单的计算器.html' target="_blank"><li>简单的计算器<span></span></li></a>
-						<a href = 'http://htmlpreview.github.com/?https://github.com/a62527776a/jianli/blob/master/worklist/钟表.html' target="_blank"><li>时钟<span></span></li></a>
-						<a href = 'http://htmlpreview.github.com/?https://github.com/a62527776a/jianli/blob/master/worklist/接球小游戏.html' target="_blank"><li>接球小游戏<span></span></li></a>
 					</ul>
 				</li>
 				<li class = 'page' id = 'pageFive'>
@@ -616,6 +626,7 @@ window.onload = function(){
 	document.ontouchmove = function(e){
 		e.preventDefault();
 	}
+	alert('简历支持方向键切换、按钮切换。对移动端以做适配。');
 }
 		</script>
 	</body>
