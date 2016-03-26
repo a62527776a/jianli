@@ -94,6 +94,9 @@ canvas {
         secondCanvas.style.webkitTransform = 'rotate( '+ ms*0.006 +'deg)';
         minuteCanvas.style.webkitTransform = 'rotate( '+ m*6 +'deg)';
         hourCanvas.style.webkitTransform = 'rotate( '+ h*30 +'deg)';        
+        secondCanvas.style.transform = 'rotate( '+ ms*0.006 +'deg)';
+        minuteCanvas.style.transform = 'rotate( '+ m*6 +'deg)';
+        hourCanvas.style.transform = 'rotate( '+ h*30 +'deg)';      
         m = check(m);
         s = check(s);
         p.innerHTML = h + ':' + m + ':' + s;
