@@ -85,6 +85,7 @@ var blood = 10;
 var btn = document.getElementsByTagName('button')[0];
 var timer;
 var timers;
+var timerq;
 var start = function(){
     timer = setInterval(function player(){
         var a = document.createElement('div');
@@ -122,11 +123,26 @@ var start = function(){
             }
         },30)
     },500)
-    document.onmousemove = function(e){
-        var l = e.clientX;
-        var iWidth = p.offsetWidth;
-        p.style.left = l - iWidth/2 + 'px';
-    }
+    document.addEventListener('keydown',function(event){
+		if(event.keyCode === 37){
+			clearInterval(timerq);
+			timerq = setInterval(function(){
+				p.style.left = p.offsetLeft - 15 + 'px';	
+			},15)
+		} else if (event.keyCode === 39){
+			clearInterval(timerq);
+			timerq = setInterval(function(){
+				p.style.left = p.offsetLeft + 15 + 'px';	
+			},15)
+		}
+	});
+	document.addEventListener('touchmove',function(event){
+			var touchX = event.touches[0].pageX;
+			p.style.left = touchX - p.offsetWidth/2 + 'px'
+	})
+	document.addEventListener('keyup',function(event){
+		clearInterval(timerq);
+	})
     function writeMsg(){
 	    span.innerHTML = '您还剩' + blood + '血量!';
 	}
@@ -142,7 +158,7 @@ window.onload = function(){
 		document.body.removeChild(oMask);
 		document.body.removeChild(launch);
 		start();
-	})
-	alert('游戏采用定时函数间隔产生球，采用内建函数Math.random()随机确定球的位置,使用startmove方法控制接盘的位置');
+	});
+	alert('游戏采用定时函数间隔产生球，采用内建函数Math.random()随机确定球的位置,使用startmove方法控制接盘的位置，支持手机端操作');
 }
 </script>
