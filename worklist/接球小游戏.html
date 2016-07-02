@@ -161,7 +161,6 @@ var set = function(){
 	launch.style.left = oWidth / 2 - launch.offsetWidth/2 + 'px';
 	launch.style.top = oHeight / 2 - launch.offsetHeight/2 + 'px';
 }
-window.onload = function(){
 	set();
 	btn.addEventListener('click',function(){
 		document.body.removeChild(oMask);
@@ -169,5 +168,4 @@ window.onload = function(){
 		start();
 	});
 	alert('游戏采用定时函数间隔产生球，采用内建函数Math.random()随机确定球的位置,方向键控制盘子,可用手机愉快的玩耍哦~！');
-}
 </script>
