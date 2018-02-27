@@ -50,13 +50,13 @@
 
 ****
 - 个人优势
- 1. JS语言基本功扎实 理解原型链 递归 Promise 熟悉ES6
- 2. 掌握NodeJs 理解 Stream Buffer Event 机制 熟练运用 File Net HTTP模块
- 2. 熟悉常用数据结构、算法
- 2. 代码整洁、规范 日常使用ESLint
- 3. 熟悉Gitflow工作流 规范的多人协作开发
- 4. 流畅阅读英文文档 
- 5. 基本文档书写能力
+1. 擅长Vue组件化开发，良好的文档书写能力 输出质量高易用性强的Vue组件
+2. 掌握 Koa2 express MongoDB数据库
+3. 熟练掌握Vux ElementUi 等移动端 管理端UI库
+4. 代码整洁、规范 日常使用ESLint
+5. 熟悉Gitflow工作流 规范的多人协作开发
+6. 流畅阅读英文文档 
+7. 掌握WebPack配置使用
 ****
 - 个人项目 
 
