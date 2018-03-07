@@ -50,11 +50,12 @@
 - 个人优势
 1. 擅长Vue组件化开发，良好的文档书写能力 输出质量高易用性强的Vue组件
 2. 掌握 Koa2 express MongoDB数据库
-3. 熟练掌握Vux ElementUi 等移动端 管理端UI库
+3. 掌握canvas小游戏开发、SVG css3 动画制作
 4. 代码整洁、规范 日常使用ESLint
 5. 熟悉Gitflow工作流 规范的多人协作开发
 6. 流畅阅读英文文档 
-7. 掌握WebPack配置使用
+7. 掌握WebPack前端自动化配置使用
+8. 
 ****
 - 个人项目 
 
