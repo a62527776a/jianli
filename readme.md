@@ -62,6 +62,7 @@
 
 ![基于Vue2开发的FAB组件](http://upload-images.jianshu.io/upload_images/5738345-0e673f9e9c8b7366?imageMogr2/auto-orient/strip)
 
+围绕 css3 transition属性开发的Vue2组件
 参考常用开源组件API设计 开箱即用 文档清晰
 
 2） [基于Vue Electron开发的跨平台音乐播放器](https://github.com/a62527776a/music-player) 
